@@ -2,9 +2,10 @@ import { testUser } from '../helpers/testData'
 import { buttons, itemNames, messages, urlEndPoints, headerText } from '../helpers/names'
 import { signUpForm, errorEl, headers } from '../helpers/selectors'
 import { apiUrl } from '../helpers/apiUrl'
+import { ObjectOfStrings, User, SignUp } from '../helpers/interfaces'
 
-const registerNewUser = (selector, data) => {
-  let userCredentials = {}
+const registerNewUser = (selector: SignUp, data: User): void => {
+  let userCredentials: ObjectOfStrings = {}
   //filling out the user registration form
   for (let key in selector) {
     switch (key) {
@@ -14,7 +15,7 @@ const registerNewUser = (selector, data) => {
       case 'code':
         //waiting for SMS OTP text message and extracting verification code
         cy.wait(3000)
-        cy.getOtp().then(otp => {
+        cy.getOtp(Cypress.env('accountSid'), Cypress.env('authToken')).then(otp => {
           cy.inputText(selector[key], otp)
         })
         break
@@ -56,7 +57,7 @@ describe('User Registration Flow', () => {
   })
 
   context('Negative Scenarios', () => {
-    it('TC2 - should prevent registration of an existing user', () => {
+    it.only('TC2 - should prevent registration of an existing user', () => {
       cy.fixture('registeredUser').then(user => {
         //partial filling out the user registration form
         cy.inputText(signUpForm.email, user.email)

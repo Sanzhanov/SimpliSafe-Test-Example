@@ -19,7 +19,7 @@ Before running the tests, I recommend viewing their code in the _spec_ file `cyp
 
 To receive a _one-time password (OTP)_ via SMS as part of the _Two-factor authentication (2FA)_ workflow, I used the third-party service <a rel="Twilio" href="https://www.twilio.com/en-us">Twilio</a>. Receiving OTP is implemented using an API call and wrapped in a custom command.
 
-> Due to lack of sufficient time, I wrote this project in plain JavaScript. As part of the revision, I would, of course, configure the project to use TypeScript. Also beyond the scope of testing I left checking the data sent by the backend when registering a new user and his further authentication (calls `'token'`, `'authCheck'`, `'loginInfo'`).
+> Due to lack of sufficient time, beyond the scope of testing I left checking the data sent by the backend when registering a new user and his further authentication (calls `'token'`, `'authCheck'`, `'loginInfo'`). This could also be the subject of writing API tests for authenticating a registered user in an application.
 
 <div align='center'>
 

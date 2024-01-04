@@ -10,23 +10,26 @@
 //
 //
 // -- This is a parent command --
-Cypress.Commands.add('getOtp', () => {
-  return cy
-    .request({
-      method: 'GET',
-      url: `https://api.twilio.com/2010-04-01/Accounts/${Cypress.env('accountSid')}/Messages.json`,
-      auth: {
-        username: Cypress.env('accountSid'),
-        password: Cypress.env('authToken'),
-        AuthMethod: 'BasicAuth',
-      },
-    })
-    .then(response => {
-      expect(response.status).to.eq(200)
-      return response.body.messages[0].body.substring(0, 6)
-    })
+Cypress.Commands.add('clickOnElByText', (text: string) => {
+  cy.contains(text).should('be.visible').click()
 })
 
+Cypress.Commands.add('checkEl', (selector: string) => {
+  cy.get(selector).check({ force: true })
+})
+
+Cypress.Commands.add('inputText', (selector: string, text: string) => {
+  cy.get(selector).should('be.visible').clear().type(text.toString())
+})
+
+Cypress.Commands.add('verifyTextOfEl', (selector: string, text: string) => {
+  cy.get(selector).should('be.visible').and('contain.text', text)
+})
+
+Cypress.Commands.add('verifyUrl', (endpoint: string) => {
+  cy.url().should('include', endpoint)
+})
+//
 // -- This is a child command --
 // Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
 //

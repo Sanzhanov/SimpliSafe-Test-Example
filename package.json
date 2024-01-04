@@ -11,6 +11,7 @@
     "@faker-js/faker": "^8.3.1",
     "cypress": "^13.6.2",
     "cypress-mochawesome-reporter": "^3.8.0",
-    "prettier": "3.1.1"
+    "prettier": "3.1.1",
+    "typescript": "^5.3.3"
   }
 }

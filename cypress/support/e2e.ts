@@ -20,3 +20,16 @@ import 'cypress-mochawesome-reporter/register'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      getOtp: (username: string, password: string) => Cypress.Chainable<any>
+      clickOnElByText: (text: string) => Cypress.Chainable<any>
+      checkEl: (selector: string) => Cypress.Chainable<any>
+      inputText: (selector: string, text: string) => Cypress.Chainable<any>
+      verifyTextOfEl: (selector: string, text: string) => Cypress.Chainable<any>
+      verifyUrl: (endpoint: string) => Cypress.Chainable<any>
+    }
+  }
+}
