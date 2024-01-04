@@ -57,7 +57,7 @@ describe('User Registration Flow', () => {
   })
 
   context('Negative Scenarios', () => {
-    it.only('TC2 - should prevent registration of an existing user', () => {
+    it('TC2 - should prevent registration of an existing user', () => {
       cy.fixture('registeredUser').then(user => {
         //partial filling out the user registration form
         cy.inputText(signUpForm.email, user.email)
